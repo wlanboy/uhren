@@ -1,32 +1,37 @@
 [
-  {
-    "brand": "Casio",
-    "name": "Casio Edifice EFR-S108DE-3AV",
-    "code": "EFR-S108DE-3AV",
-    "value": 120,
-    "tags": [
-      "Quarz",
-      "Saphirglas",
-      "Edelstahl",
-      "Slim Line",
-      "Green Dial",
-      "50m Wasserdicht"
-    ],
-    "tech": {
-      "Werk": "Quarz",
-      "Kaliber": "Casio 2719",
-      "Batterie": "SR920SW (ca. 3 Jahre)",
-      "Material Gehäuse": "Edelstahl",
-      "Material Glas": "Saphirglas",
-      "Material Band": "Edelstahl",
-      "Zifferblatt": "Grün, Sonnenschliff",
-      "Wasserdichtigkeit": "50 m",
-      "Durchmesser": "40 mm",
-      "Höhe": "8.1 mm",
-      "Bandanstoß": "20 mm",
-      "Gewicht": "110 g",
-      "Funktionen": "Datum, Slim-Case-Design",
-      "Besonderheiten": "Sehr flaches Gehäuse, kratzfestes Saphirglas"
+    {
+        "brand": "Spinnaker",
+        "name": "Spinnaker Croft 39 GMT Automatic SP-5157-55",
+        "code": "SP-5157-55",
+        "value": 500,
+        "tags": [
+            "Automatik",
+            "GMT",
+            "Saphirglas",
+            "Edelstahl",
+            "Diver",
+            "NH34",
+            "200m Wasserdicht"
+        ],
+        "tech": {
+            "Werk": "Seiko NH34 Automatik GMT",
+            "Kaliber": "NH34A",
+            "Gangreserve": "41 Stunden",
+            "Genauigkeit": "-20/+40 Sekunden pro Tag",
+            "Halbschwingungen": "21.600 A/h",
+            "Steine": "24 Jewels",
+            "GMT-Funktion": "Unabhängiger 24h-Zeiger",
+            "Material Gehäuse": "316L Edelstahl",
+            "Material Glas": "Saphirglas mit AR-Beschichtung",
+            "Lünette": "120-Klick GMT-Lünette, Edelstahl",
+            "Wasserdichtigkeit": "200 m",
+            "Durchmesser": "39 mm",
+            "Höhe": "13 mm",
+            "Lug-to-Lug": "47 mm",
+            "Bandanstoß": "20 mm",
+            "Material Band": "Edelstahlarmband",
+            "Leuchtmasse": "Swiss Super-LumiNova",
+            "Besonderheiten": "Kompass-inspirierte GMT-Lünette, kompaktes 39mm Gehäuse"
+        }
     }
-  }
 ]

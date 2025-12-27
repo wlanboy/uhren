@@ -3,11 +3,14 @@ let currentView = "images";
 let currentBrand = "all";
 let compareCodeA = "";
 let compareCodeB = "";
+let wishlist = [];
 
 async function loadData() {
     try {
         const res = await fetch("data/watches.json");
         watches = await res.json();
+        const reswish = await fetch("data/wishlist.json");
+        wishlist = await reswish.json();
         populateCompareSelects();
         applySystemThemePreference();
         render();
@@ -93,6 +96,7 @@ function render() {
         });
 
     renderComparison();
+    renderWishlist();
 }
 
 function populateCompareSelects() {
@@ -113,48 +117,82 @@ function populateCompareSelects() {
 }
 
 function renderComparison() {
-  const area = document.getElementById("compareArea");
-  area.innerHTML = "";
+    const area = document.getElementById("compareArea");
+    area.innerHTML = "";
 
-  const codes = [compareCodeA, compareCodeB].filter(Boolean);
-  if (codes.length === 0) return;
+    const codes = [compareCodeA, compareCodeB].filter(Boolean);
+    if (codes.length === 0) return;
 
-  codes.forEach(code => {
-    const w = watches.find(x => x.code === code);
-    if (!w) return;
+    codes.forEach(code => {
+        const w = watches.find(x => x.code === code);
+        if (!w) return;
 
-    const card = document.createElement("article");
-    card.className = "compare-card";
+        const card = document.createElement("article");
+        card.className = "compare-card";
 
-    let html = `<h3>${w.name}</h3>`;
+        let html = `<h3>${w.name}</h3>`;
 
-    // Immer Technik im Vergleich
-    html += `
+        // Immer Technik im Vergleich
+        html += `
       <ul>
         <li><strong>Hersteller:</strong> ${w.brand}</li>
         ${w.value ? `<li><strong>Wert:</strong> ${w.value} €</li>` : ""}
     `;
 
-    if (w.tech) {
-      for (const key in w.tech) {
-        html += `<li><strong>${key}:</strong> ${w.tech[key]}</li>`;
-      }
-    }
+        if (w.tech) {
+            for (const key in w.tech) {
+                html += `<li><strong>${key}:</strong> ${w.tech[key]}</li>`;
+            }
+        }
 
-    html += `</ul>`;
+        html += `</ul>`;
 
-    if (w.tags && w.tags.length) {
-      html += `<div class="tags">`;
-      w.tags.forEach(t => {
-        html += `<span class="tag">${t}</span>`;
-      });
-      html += `</div>`;
-    }
+        if (w.tags && w.tags.length) {
+            html += `<div class="tags">`;
+            w.tags.forEach(t => {
+                html += `<span class="tag">${t}</span>`;
+            });
+            html += `</div>`;
+        }
 
-    card.innerHTML = html;
-    area.appendChild(card);
-  });
+        card.innerHTML = html;
+        area.appendChild(card);
+    });
 }
+
+function renderWishlist() {
+    const wishlistArea = document.getElementById("wishlistArea");
+    wishlistArea.innerHTML = "";
+
+    wishlist.forEach(w => {
+        const card = document.createElement("article");
+        card.className = "card";
+
+        let html = `<h3>${w.name}</h3>`;
+
+        html += `
+            <img src="faces/${w.code}.jpg" loading="lazy" alt="${w.name}">
+        `;
+
+        if (w.tags && w.tags.length > 0) {
+            html += `<div class="tags">`;
+            w.tags.forEach(t => {
+                html += `<span class="tag">${t}</span>`;
+            });
+            html += `</div>`;
+        }
+
+        card.innerHTML = html;
+
+        const img = card.querySelector("img");
+        if (img) {
+            img.onload = () => img.classList.add("loaded");
+        }
+
+        wishlistArea.appendChild(card);
+    });
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const viewSelect = document.getElementById("viewSelect");

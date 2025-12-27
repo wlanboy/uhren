@@ -1,0 +1,82 @@
+/* Grundlayout Masonry */
+.masonry {
+  column-count: 1;
+  column-gap: 1.5rem;
+}
+
+@media (min-width: 600px) {
+  .masonry {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 900px) {
+  .masonry {
+    column-count: 3;
+  }
+}
+
+@media (min-width: 1300px) {
+  .masonry {
+    column-count: 4;
+  }
+}
+
+/* Karten */
+.card {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--pico-card-background-color);
+  box-shadow: var(--pico-card-box-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Bild-Animation */
+.card img {
+  width: 100%;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.card img.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tag-Badges */
+.tags {
+  margin-top: 0.5rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  margin: 0.2rem 0.2rem 0 0;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: var(--tag-bg);
+  color: var(--tag-fg);
+}
+
+:root {
+  --tag-bg: #e0e0e0;
+  --tag-fg: #333333;
+}
+
+[data-theme="dark"] {
+  --tag-bg: #333333;
+  --tag-fg: #eeeeee;
+}
+
+.filter-panel {
+  margin-bottom: 1rem;
+}

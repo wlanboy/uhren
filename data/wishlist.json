@@ -1,0 +1,32 @@
+[
+  {
+    "brand": "Casio",
+    "name": "Casio Edifice EFR-S108DE-3AV",
+    "code": "EFR-S108DE-3AV",
+    "value": 120,
+    "tags": [
+      "Quarz",
+      "Saphirglas",
+      "Edelstahl",
+      "Slim Line",
+      "Green Dial",
+      "50m Wasserdicht"
+    ],
+    "tech": {
+      "Werk": "Quarz",
+      "Kaliber": "Casio 2719",
+      "Batterie": "SR920SW (ca. 3 Jahre)",
+      "Material Gehäuse": "Edelstahl",
+      "Material Glas": "Saphirglas",
+      "Material Band": "Edelstahl",
+      "Zifferblatt": "Grün, Sonnenschliff",
+      "Wasserdichtigkeit": "50 m",
+      "Durchmesser": "40 mm",
+      "Höhe": "8.1 mm",
+      "Bandanstoß": "20 mm",
+      "Gewicht": "110 g",
+      "Funktionen": "Datum, Slim-Case-Design",
+      "Besonderheiten": "Sehr flaches Gehäuse, kratzfestes Saphirglas"
+    }
+  }
+]

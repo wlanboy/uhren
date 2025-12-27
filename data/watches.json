@@ -1,0 +1,160 @@
+[
+  {
+    "brand": "Spinnaker",
+    "name": "Spinnaker Bradner Automatik Tidal Blue SP-5062-05",
+    "code": "SP-5062-05",
+    "value": 350,
+    "tags": ["Automatik", "Diver", "Saphirglas", "NH35", "Vintage-Style", "Edelstahl"],
+    "tech": {
+      "Werk": "Seiko NH35 Automatik",
+      "Kaliber": "NH35A",
+      "Gangreserve": "41 Stunden",
+      "Genauigkeit": "-20/+40 Sekunden pro Tag",
+      "Halbschwingungen": "21.600 A/h",
+      "Steine": "24 Jewels",
+      "Material Gehäuse": "316L Edelstahl",
+      "Material Glas": "Saphirglas",
+      "Material Lünette": "Innenliegende Taucherlünette",
+      "Wasserdichtigkeit": "150 m",
+      "Durchmesser": "42 mm",
+      "Höhe": "14 mm",
+      "Bandanstoß": "20 mm",
+      "Besonderheiten": "Vintage-Kompressor-Stil"
+    }
+  },
+  {
+    "brand": "Casio",
+    "name": "CASIO G-Shock G-Steel GST-B400-1AER",
+    "code": "GST-B400-1AER",
+    "value": 300,
+    "tags": ["Solar", "Bluetooth", "G-Shock", "Edelstahl", "Carbon Core Guard"],
+    "tech": {
+      "Werk": "Quarz (Tough Solar + Bluetooth)",
+      "Kaliber": "Module 5657",
+      "Batterie": "Solar",
+      "Material Gehäuse": "Edelstahl + Resin",
+      "Material Glas": "Mineralglas",
+      "Wasserdichtigkeit": "200 m",
+      "Funktionen": "Weltzeit, Stoppuhr, Timer, 5 Alarme",
+      "Durchmesser": "46 mm",
+      "Höhe": "12.9 mm",
+      "Gewicht": "80 g"
+    }
+  },
+  {
+    "brand": "Casio",
+    "name": "CASIO G-Shock GW-B5600BC-1BER",
+    "code": "GW-B5600BC-1BER",
+    "value": 200,
+    "tags": ["Solar", "Funk", "Bluetooth", "G-Shock", "Digital"],
+    "tech": {
+      "Werk": "Quarz (Tough Solar + Funk + Bluetooth)",
+      "Kaliber": "Module 3461",
+      "Batterie": "Solar",
+      "Material Gehäuse": "Resin",
+      "Material Glas": "Mineralglas",
+      "Wasserdichtigkeit": "200 m",
+      "Funkempfang": "Multiband 6",
+      "Funktionen": "Weltzeit, Stoppuhr, Timer, 5 Alarme",
+      "Durchmesser": "43 mm",
+      "Höhe": "13 mm",
+      "Gewicht": "85 g"
+    }
+  },
+  {
+    "brand": "Casio",
+    "name": "Casio EFS-S630DC-2AVUEF",
+    "code": "EFS-S630DC-2AVUEF",
+    "value": 180,
+    "tags": ["Solar", "Saphirglas", "Edelstahl", "Chronograph"],
+    "tech": {
+      "Werk": "Quarz (Solar)",
+      "Kaliber": "Module 5634",
+      "Batterie": "Solar, 5 Monate Dunkelreserve",
+      "Material Gehäuse": "Edelstahl",
+      "Material Glas": "Saphirglas",
+      "Wasserdichtigkeit": "100 m",
+      "Funktionen": "Chronograph, Datum",
+      "Durchmesser": "45 mm",
+      "Höhe": "10.8 mm",
+      "Gewicht": "135 g"
+    }
+  },
+  {
+    "brand": "Casio",
+    "name": "Casio GBM-2100A-1A3ER",
+    "code": "GBM-2100A-1A3ER",
+    "value": 150,
+    "tags": ["Solar", "Bluetooth", "G-Shock", "Carbon Core Guard", "Digital-Analog"],
+    "tech": {
+      "Werk": "Quarz (Tough Solar + Bluetooth)",
+      "Kaliber": "Module 5689",
+      "Batterie": "Solar",
+      "Material Gehäuse": "Carbon Core Guard",
+      "Material Glas": "Mineralglas",
+      "Wasserdichtigkeit": "200 m",
+      "Funktionen": "Weltzeit, Stoppuhr, Timer, 5 Alarme, Super Illuminator",
+      "Durchmesser": "45 mm",
+      "Höhe": "11.9 mm",
+      "Gewicht": "52 g"
+    }
+  },
+  {
+    "brand": "Casio",
+    "name": "Casio A130WE-7AEF",
+    "code": "A130WE-7AEF",
+    "value": 55,
+    "tags": ["Digital", "Retro", "Resin", "Edelstahl", "Edelstahlband"],
+    "tech": {
+      "Werk": "Quarz",
+      "Kaliber": "3294",
+      "Batterie": "7 Jahre (CR2016)",
+      "Material Gehäuse": "Resin",
+      "Material Glas": "Acryl",
+      "Material Band": "Edelstahl",
+      "Wasserdichtigkeit": "Spritzwassergeschützt",
+      "Funktionen": "Stoppuhr, Alarm, LED-Licht",
+      "Durchmesser": "38 mm",
+      "Höhe": "9 mm",
+      "Gewicht": "44 g"
+    }
+  },
+  {
+    "brand": "Casio",
+    "name": "Casio AE-1600H-8BVEF",
+    "code": "AE-1600H-8BVEF",
+    "value": 45,
+    "tags": ["Digital", "Weltzeit", "10 Jahre Batterie", "Resin", "Outdoor"],
+    "tech": {
+      "Werk": "Quarz",
+      "Kaliber": "5689",
+      "Batterie": "10 Jahre (CR2025)",
+      "Material Gehäuse": "Resin",
+      "Material Glas": "Acryl",
+      "Wasserdichtigkeit": "100 m",
+      "Funktionen": "Weltzeit, Stoppuhr, Timer, 5 Alarme, LED-Licht",
+      "Durchmesser": "51 mm",
+      "Höhe": "15 mm",
+      "Gewicht": "55 g"
+    }
+  },
+  {
+    "brand": "Casio",
+    "name": "Casio AE-1200WH-1CVEF",
+    "code": "AE-1200WH-1CVEF",
+    "value": 40,
+    "tags": ["Digital", "Weltzeit", "10 Jahre Batterie", "Resin", "Budget"],
+    "tech": {
+      "Werk": "Quarz",
+      "Kaliber": "3299",
+      "Batterie": "10 Jahre (CR2025)",
+      "Material Gehäuse": "Resin",
+      "Material Glas": "Acryl",
+      "Wasserdichtigkeit": "100 m",
+      "Funktionen": "Weltzeit, Stoppuhr, Timer, 5 Alarme, LED-Licht",
+      "Durchmesser": "45 mm",
+      "Höhe": "12.5 mm",
+      "Gewicht": "32 g"
+    }
+  }
+]

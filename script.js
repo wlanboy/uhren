@@ -1,11 +1,14 @@
 let watches = [];
 let currentView = "images";
 let currentBrand = "all";
+let compareCodeA = "";
+let compareCodeB = "";
 
 async function loadData() {
     try {
         const res = await fetch("data/watches.json");
         watches = await res.json();
+        populateCompareSelects();
         applySystemThemePreference();
         render();
     } catch (e) {
@@ -88,6 +91,69 @@ function render() {
 
             gallery.appendChild(card);
         });
+
+    renderComparison();
+}
+
+function populateCompareSelects() {
+    const selectA = document.getElementById("compareSelectA");
+    const selectB = document.getElementById("compareSelectB");
+
+    watches.forEach(w => {
+        const optA = document.createElement("option");
+        optA.value = w.code;
+        optA.textContent = w.name;
+        selectA.appendChild(optA);
+
+        const optB = document.createElement("option");
+        optB.value = w.code;
+        optB.textContent = w.name;
+        selectB.appendChild(optB);
+    });
+}
+
+function renderComparison() {
+  const area = document.getElementById("compareArea");
+  area.innerHTML = "";
+
+  const codes = [compareCodeA, compareCodeB].filter(Boolean);
+  if (codes.length === 0) return;
+
+  codes.forEach(code => {
+    const w = watches.find(x => x.code === code);
+    if (!w) return;
+
+    const card = document.createElement("article");
+    card.className = "compare-card";
+
+    let html = `<h3>${w.name}</h3>`;
+
+    // Immer Technik im Vergleich
+    html += `
+      <ul>
+        <li><strong>Hersteller:</strong> ${w.brand}</li>
+        ${w.value ? `<li><strong>Wert:</strong> ${w.value} €</li>` : ""}
+    `;
+
+    if (w.tech) {
+      for (const key in w.tech) {
+        html += `<li><strong>${key}:</strong> ${w.tech[key]}</li>`;
+      }
+    }
+
+    html += `</ul>`;
+
+    if (w.tags && w.tags.length) {
+      html += `<div class="tags">`;
+      w.tags.forEach(t => {
+        html += `<span class="tag">${t}</span>`;
+      });
+      html += `</div>`;
+    }
+
+    card.innerHTML = html;
+    area.appendChild(card);
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -95,6 +161,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const brandSelect = document.getElementById("brandSelect");
     const themeToggle = document.getElementById("themeToggle");
     const tagFilter = document.getElementById("tagFilter");
+    const compareSelectA = document.getElementById("compareSelectA");
+    const compareSelectB = document.getElementById("compareSelectB");
 
     viewSelect.addEventListener("change", e => {
         currentView = e.target.value;
@@ -113,6 +181,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     tagFilter.addEventListener("change", () => {
         render();
+    });
+
+    compareSelectA.addEventListener("change", e => {
+        compareCodeA = e.target.value;
+        renderComparison();
+    });
+
+    compareSelectB.addEventListener("change", e => {
+        compareCodeB = e.target.value;
+        renderComparison();
     });
 
     loadData();

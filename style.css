@@ -116,3 +116,30 @@
 .comparison-bar {
   margin-top: 0.5rem;
 }
+
+/* Wunschliste: gleiche Optik wie Vergleich */
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 900px) {
+  .wishlist-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.wishlist-card {
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--pico-card-background-color);
+  box-shadow: var(--pico-card-box-shadow);
+}
+
+.wishlist-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}

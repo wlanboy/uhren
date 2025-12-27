@@ -134,10 +134,10 @@ function renderComparison() {
 
         // Immer Technik im Vergleich
         html += `
-      <ul>
-        <li><strong>Hersteller:</strong> ${w.brand}</li>
-        ${w.value ? `<li><strong>Wert:</strong> ${w.value} €</li>` : ""}
-    `;
+        <ul>
+            <li><strong>Hersteller:</strong> ${w.brand}</li>
+            ${w.value ? `<li><strong>Wert:</strong> ${w.value} €</li>` : ""}
+        `;
 
         if (w.tech) {
             for (const key in w.tech) {
@@ -181,6 +181,16 @@ function renderWishlist() {
             });
             html += `</div>`;
         }
+
+        html += `<ul>`;
+
+        if (w.tech) {
+            for (const key in w.tech) {
+                html += `<li><strong>${key}:</strong> ${w.tech[key]}</li>`;
+            }
+        }
+
+        html += `</ul>`;        
 
         card.innerHTML = html;
 

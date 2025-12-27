@@ -80,3 +80,39 @@
 .filter-panel {
   margin-bottom: 1rem;
 }
+
+/* Vergleichsbereich: zwei Spalten nebeneinander */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 900px) {
+  .compare-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.compare-card {
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--pico-card-background-color);
+  box-shadow: var(--pico-card-box-shadow);
+}
+
+.compare-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.compare-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+/* Vergleichs-Navigation leicht absetzen */
+.comparison-bar {
+  margin-top: 0.5rem;
+}

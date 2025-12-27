@@ -4,7 +4,14 @@
     "name": "Spinnaker Bradner Automatik Tidal Blue SP-5062-05",
     "code": "SP-5062-05",
     "value": 350,
-    "tags": ["Automatik", "Diver", "Saphirglas", "NH35", "Vintage-Style", "Edelstahl"],
+    "tags": [
+      "Automatik",
+      "Diver",
+      "Saphirglas",
+      "NH35",
+      "Vintage-Style",
+      "Edelstahl"
+    ],
     "tech": {
       "Werk": "Seiko NH35 Automatik",
       "Kaliber": "NH35A",
@@ -27,7 +34,13 @@
     "name": "CASIO G-Shock G-Steel GST-B400-1AER",
     "code": "GST-B400-1AER",
     "value": 300,
-    "tags": ["Solar", "Bluetooth", "G-Shock", "Edelstahl", "Carbon Core Guard"],
+    "tags": [
+      "Solar",
+      "Bluetooth",
+      "G-Shock",
+      "Edelstahl",
+      "Carbon Core Guard"
+    ],
     "tech": {
       "Werk": "Quarz (Tough Solar + Bluetooth)",
       "Kaliber": "Module 5657",
@@ -46,7 +59,13 @@
     "name": "CASIO G-Shock GW-B5600BC-1BER",
     "code": "GW-B5600BC-1BER",
     "value": 200,
-    "tags": ["Solar", "Funk", "Bluetooth", "G-Shock", "Digital"],
+    "tags": [
+      "Solar",
+      "Funk",
+      "Bluetooth",
+      "G-Shock",
+      "Digital"
+    ],
     "tech": {
       "Werk": "Quarz (Tough Solar + Funk + Bluetooth)",
       "Kaliber": "Module 3461",
@@ -66,7 +85,12 @@
     "name": "Casio EFS-S630DC-2AVUEF",
     "code": "EFS-S630DC-2AVUEF",
     "value": 180,
-    "tags": ["Solar", "Saphirglas", "Edelstahl", "Chronograph"],
+    "tags": [
+      "Solar",
+      "Saphirglas",
+      "Edelstahl",
+      "Chronograph"
+    ],
     "tech": {
       "Werk": "Quarz (Solar)",
       "Kaliber": "Module 5634",
@@ -85,7 +109,13 @@
     "name": "Casio GBM-2100A-1A3ER",
     "code": "GBM-2100A-1A3ER",
     "value": 150,
-    "tags": ["Solar", "Bluetooth", "G-Shock", "Carbon Core Guard", "Digital-Analog"],
+    "tags": [
+      "Solar",
+      "Bluetooth",
+      "G-Shock",
+      "Carbon Core Guard",
+      "Digital-Analog"
+    ],
     "tech": {
       "Werk": "Quarz (Tough Solar + Bluetooth)",
       "Kaliber": "Module 5689",
@@ -104,7 +134,13 @@
     "name": "Casio A130WE-7AEF",
     "code": "A130WE-7AEF",
     "value": 55,
-    "tags": ["Digital", "Retro", "Resin", "Edelstahl", "Edelstahlband"],
+    "tags": [
+      "Digital",
+      "Retro",
+      "Resin",
+      "Edelstahl",
+      "Edelstahlband"
+    ],
     "tech": {
       "Werk": "Quarz",
       "Kaliber": "3294",
@@ -124,7 +160,13 @@
     "name": "Casio AE-1600H-8BVEF",
     "code": "AE-1600H-8BVEF",
     "value": 45,
-    "tags": ["Digital", "Weltzeit", "10 Jahre Batterie", "Resin", "Outdoor"],
+    "tags": [
+      "Digital",
+      "Weltzeit",
+      "10 Jahre Batterie",
+      "Resin",
+      "Outdoor"
+    ],
     "tech": {
       "Werk": "Quarz",
       "Kaliber": "5689",
@@ -143,7 +185,13 @@
     "name": "Casio AE-1200WH-1CVEF",
     "code": "AE-1200WH-1CVEF",
     "value": 40,
-    "tags": ["Digital", "Weltzeit", "10 Jahre Batterie", "Resin", "Budget"],
+    "tags": [
+      "Digital",
+      "Weltzeit",
+      "10 Jahre Batterie",
+      "Resin",
+      "Budget"
+    ],
     "tech": {
       "Werk": "Quarz",
       "Kaliber": "3299",

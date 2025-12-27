@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <title>Meine Uhrensammlung</title>
+
+  <!-- PicoCSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+
+<body>
+
+<header class="container">
+  <nav>
+    <ul>
+      <li><strong>Meine Uhrensammlung</strong></li>
+    </ul>
+    <ul>
+      <li>
+        <select id="viewSelect">
+          <option value="images">Name + Bild</option>
+          <option value="tech">Name + Tech Info</option>
+        </select>
+      </li>
+      <li>
+        <select id="brandSelect">
+          <option value="all">Alle Hersteller</option>
+          <option value="Spinnaker">Spinnaker</option>
+          <option value="Casio">Casio</option>
+        </select>
+      </li>
+      <li>
+        <button id="themeToggle">Theme</button>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+  <section class="filter-panel">
+    <details>
+      <summary>Tags filtern</summary>
+      <fieldset id="tagFilter">
+        <label><input type="checkbox" value="Automatik"> Automatik</label>
+        <label><input type="checkbox" value="Solar"> Solar</label>
+        <label><input type="checkbox" value="G-Shock"> G‑Shock</label>
+        <label><input type="checkbox" value="Saphirglas"> Saphirglas</label>
+        <label><input type="checkbox" value="Diver"> Diver</label>
+        <label><input type="checkbox" value="Digital"> Digital</label>
+        <label><input type="checkbox" value="Edelstahl"> Edelstahl</label>
+        <label><input type="checkbox" value="Bluetooth"> Bluetooth</label>
+        <label><input type="checkbox" value="Funk"> Funk</label>
+      </fieldset>
+    </details>
+  </section>
+
+  <section>
+    <div id="gallery" class="masonry">
+      <!-- Karten werden per JS gerendert -->
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>

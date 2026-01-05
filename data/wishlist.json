@@ -33,5 +33,40 @@
             "Leuchtmasse": "Swiss Super-LumiNova",
             "Besonderheiten": "Kompass-inspirierte GMT-Lünette, kompaktes 39mm Gehäuse"
         }
+    },
+    {
+        "brand": "Spinnaker",
+        "name": "Spinnaker Hull Diver Automatic SP-5088",
+        "code": "SP-5088",
+        "value": 350,
+        "tags": [
+            "Automatik",
+            "Diver",
+            "Saphirglas",
+            "Edelstahl",
+            "NH35",
+            "300m Wasserdicht",
+            "Keramiklünette"
+        ],
+        "tech": {
+            "Werk": "Seiko NH35 Automatik",
+            "Kaliber": "NH35A",
+            "Gangreserve": "41 Stunden",
+            "Genauigkeit": "−20/+40 Sekunden pro Tag",
+            "Halbschwingungen": "21.600 A/h",
+            "Steine": "24 Jewels",
+            "Material Gehäuse": "316L Edelstahl",
+            "Material Glas": "Saphirglas",
+            "Lünette": "Einseitig drehbare Lünette mit Keramik-Inlay",
+            "Wasserdichtigkeit": "300 m",
+            "Durchmesser": "42 mm",
+            "Höhe": "14 mm",
+            "Lug-to-Lug": "50 mm",
+            "Bandanstoß": "22 mm",
+            "Material Band": "Edelstahl oder Leder (modellabhängig)",
+            "Leuchtmasse": "Swiss Super-LumiNova",
+            "Gewicht": "110 g",
+            "Besonderheiten": "Vintage-inspirierter Diver, robustes Gehäuse, Keramiklünette"
+        }
     }
 ]

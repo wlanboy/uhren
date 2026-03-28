@@ -1,8 +1,7 @@
 let watches = [];
 let currentView = "images";
 let currentBrand = "all";
-let compareCodeA = "";
-let compareCodeB = "";
+let compareQueue = []; // die letzten zwei angeklickten Uhr-Codes
 let wishlist = [];
 
 async function loadData() {
@@ -11,7 +10,6 @@ async function loadData() {
         watches = await res.json();
         const reswish = await fetch("data/wishlist.json");
         wishlist = await reswish.json();
-        populateCompareSelects();
         applySystemThemePreference();
         render();
     } catch (e) {
@@ -31,6 +29,11 @@ function getSelectedTags() {
     return Array.from(checked).map(cb => cb.value);
 }
 
+function updateCompareButton() {
+    const btn = document.getElementById("compareBtn");
+    btn.disabled = compareQueue.length < 2;
+}
+
 function render() {
     const gallery = document.getElementById("gallery");
     gallery.innerHTML = "";
@@ -42,40 +45,27 @@ function render() {
         .filter(w => {
             if (selectedTags.length === 0) return true;
             if (!w.tags) return false;
-            // Alle gewählten Tags müssen enthalten sein
             return selectedTags.every(tag => w.tags.includes(tag));
         })
         .forEach(w => {
+            const isSelected = compareQueue.includes(w.code);
             const card = document.createElement("article");
-            card.className = "card";
+            card.className = "card" + (isSelected ? " selected" : "");
 
-            let html = `<h3>${w.name}</h3>`;
+            let html = `<span class="select-check">✓</span>`;
+            html += `<h3>${w.name}</h3>`;
 
-            if (currentView === "images") {
-                html += `
-                    <img src="faces/${w.code}.jpg" loading="lazy" alt="${w.name}">
-                `;
+            if (currentView === "images" || currentView === "both") {
+                html += `<img src="faces/${w.code}.jpg" loading="lazy" alt="${w.name}">`;
             }
 
-            if (currentView === "tech") {
+            if (currentView === "tech" || currentView === "both") {
                 html += `<ul>`;
                 for (const key in w.tech) {
                     html += `<li><strong>${key}:</strong> ${w.tech[key]}</li>`;
                 }
                 html += `</ul>`;
             }
-
-            if (currentView === "both") {
-                html += `
-                    <img src="faces/${w.code}.jpg" loading="lazy" alt="${w.name}">
-                `;
-                html += `<ul>`;
-                for (const key in w.tech) {
-                    html += `<li><strong>${key}:</strong> ${w.tech[key]}</li>`;
-                }
-                html += `</ul>`;
-            }
-
 
             if (w.tags && w.tags.length > 0) {
                 html += `<div class="tags">`;
@@ -92,38 +82,29 @@ function render() {
                 img.onload = () => img.classList.add("loaded");
             }
 
+            card.addEventListener("click", () => {
+                if (compareQueue.includes(w.code)) {
+                    compareQueue = compareQueue.filter(c => c !== w.code);
+                } else {
+                    compareQueue.push(w.code);
+                    if (compareQueue.length > 2) compareQueue.shift();
+                }
+                render();
+            });
+
             gallery.appendChild(card);
         });
 
-    renderComparison();
+    updateCompareButton();
     renderWishlist();
 }
 
-function populateCompareSelects() {
-    const selectA = document.getElementById("compareSelectA");
-    const selectB = document.getElementById("compareSelectB");
-
-    watches.forEach(w => {
-        const optA = document.createElement("option");
-        optA.value = w.code;
-        optA.textContent = w.name;
-        selectA.appendChild(optA);
-
-        const optB = document.createElement("option");
-        optB.value = w.code;
-        optB.textContent = w.name;
-        selectB.appendChild(optB);
-    });
-}
-
-function renderComparison() {
+function openCompareOverlay() {
+    const overlay = document.getElementById("compareOverlay");
     const area = document.getElementById("compareArea");
     area.innerHTML = "";
 
-    const codes = [compareCodeA, compareCodeB].filter(Boolean);
-    if (codes.length === 0) return;
-
-    codes.forEach(code => {
+    compareQueue.forEach(code => {
         const w = watches.find(x => x.code === code);
         if (!w) return;
 
@@ -131,10 +112,9 @@ function renderComparison() {
         card.className = "compare-card";
 
         let html = `<h3>${w.name}</h3>`;
+        html += `<img src="faces/${w.code}.jpg" alt="${w.name}">`;
 
-        // Immer Technik im Vergleich
-        html += `
-        <ul>
+        html += `<ul>
             <li><strong>Hersteller:</strong> ${w.brand}</li>
             ${w.value ? `<li><strong>Wert:</strong> ${w.value} €</li>` : ""}
         `;
@@ -158,6 +138,14 @@ function renderComparison() {
         card.innerHTML = html;
         area.appendChild(card);
     });
+
+    overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+}
+
+function closeCompareOverlay() {
+    document.getElementById("compareOverlay").classList.remove("open");
+    document.body.style.overflow = "";
 }
 
 function renderWishlist() {
@@ -170,9 +158,7 @@ function renderWishlist() {
 
         let html = `<h3>${w.name}</h3>`;
 
-        html += `
-            <img src="faces/${w.code}.jpg" loading="lazy" alt="${w.name}">
-        `;
+        html += `<img src="faces/${w.code}.jpg" loading="lazy" alt="${w.name}">`;
 
         if (w.tags && w.tags.length > 0) {
             html += `<div class="tags">`;
@@ -190,7 +176,7 @@ function renderWishlist() {
             }
         }
 
-        html += `</ul>`;        
+        html += `</ul>`;
 
         card.innerHTML = html;
 
@@ -209,8 +195,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const brandSelect = document.getElementById("brandSelect");
     const themeToggle = document.getElementById("themeToggle");
     const tagFilter = document.getElementById("tagFilter");
-    const compareSelectA = document.getElementById("compareSelectA");
-    const compareSelectB = document.getElementById("compareSelectB");
+    const compareBtn = document.getElementById("compareBtn");
+    const overlayClose = document.getElementById("overlayClose");
+    const compareOverlay = document.getElementById("compareOverlay");
 
     viewSelect.addEventListener("change", e => {
         currentView = e.target.value;
@@ -231,14 +218,16 @@ document.addEventListener("DOMContentLoaded", () => {
         render();
     });
 
-    compareSelectA.addEventListener("change", e => {
-        compareCodeA = e.target.value;
-        renderComparison();
+    compareBtn.addEventListener("click", openCompareOverlay);
+
+    overlayClose.addEventListener("click", closeCompareOverlay);
+
+    compareOverlay.addEventListener("click", e => {
+        if (e.target === compareOverlay) closeCompareOverlay();
     });
 
-    compareSelectB.addEventListener("change", e => {
-        compareCodeB = e.target.value;
-        renderComparison();
+    document.addEventListener("keydown", e => {
+        if (e.key === "Escape") closeCompareOverlay();
     });
 
     loadData();

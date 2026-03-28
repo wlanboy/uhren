@@ -24,18 +24,50 @@
 
 /* Karten */
 .card {
+  position: relative;
   break-inside: avoid;
   margin-bottom: 1.5rem;
   padding: 1rem;
   border-radius: 12px;
   background: var(--pico-card-background-color);
   box-shadow: var(--pico-card-box-shadow);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
 }
 
 .card:hover {
   transform: translateY(-4px) scale(1.02);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Ausgewählte Karte für Vergleich */
+.card.selected {
+  border-color: var(--pico-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--pico-primary) 30%, transparent);
+}
+
+/* Häkchen-Indikator */
+.select-check {
+  display: none;
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  background: var(--pico-primary);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.card.selected .select-check {
+  display: flex;
 }
 
 /* Bild-Animation */
@@ -81,8 +113,8 @@
   margin-bottom: 1rem;
 }
 
-/* Vergleichsbereich: zwei Spalten nebeneinander */
-.compare-grid {
+/* Wunschliste */
+.wishlist-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
@@ -90,6 +122,60 @@
 }
 
 @media (min-width: 900px) {
+  .wishlist-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Vergleichs-Overlay */
+.compare-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 2rem 1rem;
+}
+
+.compare-overlay.open {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.compare-overlay-inner {
+  position: relative;
+  background: var(--pico-background-color);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 960px;
+  width: 100%;
+  margin: auto;
+}
+
+.overlay-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--pico-color);
+  padding: 0.2rem 0.5rem;
+}
+
+/* Vergleichsgrid im Overlay */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 600px) {
   .compare-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -109,37 +195,5 @@
 .compare-card img {
   width: 100%;
   border-radius: 8px;
-  margin-bottom: 0.5rem;
-}
-
-/* Vergleichs-Navigation leicht absetzen */
-.comparison-bar {
-  margin-top: 0.5rem;
-}
-
-/* Wunschliste: gleiche Optik wie Vergleich */
-.wishlist-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-@media (min-width: 900px) {
-  .wishlist-grid {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-
-.wishlist-card {
-  padding: 1rem;
-  border-radius: 12px;
-  background: var(--pico-card-background-color);
-  box-shadow: var(--pico-card-box-shadow);
-}
-
-.wishlist-card img {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }

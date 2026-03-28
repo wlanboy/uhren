@@ -22,9 +22,12 @@
       "Material Gehäuse": "316L Edelstahl",
       "Material Glas": "Saphirglas",
       "Material Lünette": "Innenliegende Taucherlünette",
+      "Material Band": "Echtleder",
       "Wasserdichtigkeit": "150 m",
+      "Leuchtmasse": "Swiss Super-LumiNova",
       "Durchmesser": "42 mm",
       "Höhe": "14 mm",
+      "Lug-to-Lug": "50 mm",
       "Bandanstoß": "20 mm",
       "Besonderheiten": "Vintage-Kompressor-Stil"
     }
@@ -82,10 +85,13 @@
       "Batterie": "Solar",
       "Material Gehäuse": "Edelstahl + Resin",
       "Material Glas": "Mineralglas",
+      "Material Band": "Resin",
       "Wasserdichtigkeit": "200 m",
       "Funktionen": "Weltzeit, Stoppuhr, Timer, 5 Alarme",
       "Durchmesser": "46 mm",
       "Höhe": "12.9 mm",
+      "Lug-to-Lug": "46.6 mm",
+      "Bandanstoß": "20 mm",
       "Gewicht": "80 g"
     }
   },
@@ -108,10 +114,13 @@
       "Funkempfang": "Multiband 6",
       "Material Gehäuse": "Resin",
       "Material Glas": "Mineralglas",
+      "Material Band": "Resin mit Edelstahl-Verbundelementen",
       "Wasserdichtigkeit": "200 m",
       "Funktionen": "Weltzeit, Stoppuhr, Timer, 5 Alarme",
       "Durchmesser": "43 mm",
       "Höhe": "13 mm",
+      "Lug-to-Lug": "48.9 mm",
+      "Bandanstoß": "16 mm",
       "Gewicht": "85 g"
     }
   },
@@ -132,10 +141,13 @@
       "Batterie": "Solar, 5 Monate Dunkelreserve",
       "Material Gehäuse": "Edelstahl",
       "Material Glas": "Saphirglas",
+      "Material Band": "Edelstahl mit schwarzer Ionenbeschichtung",
       "Wasserdichtigkeit": "100 m",
       "Funktionen": "Chronograph, Datum",
       "Durchmesser": "45 mm",
       "Höhe": "10.8 mm",
+      "Lug-to-Lug": "48 mm",
+      "Bandanstoß": "22 mm",
       "Gewicht": "135 g"
     }
   },
@@ -153,15 +165,17 @@
     ],
     "tech": {
       "Werk": "Quarz (Tough Solar + Bluetooth)",
-      "Kaliber": "Module 5689",
+      "Kaliber": "Module 5729",
       "Batterie": "Solar",
       "Material Gehäuse": "Carbon Core Guard",
       "Material Glas": "Mineralglas",
+      "Material Band": "Bio-basiertes Resin",
       "Wasserdichtigkeit": "200 m",
       "Funktionen": "Weltzeit, Stoppuhr, Timer, 5 Alarme, Super Illuminator",
       "Durchmesser": "45 mm",
       "Höhe": "11.9 mm",
-      "Gewicht": "52 g"
+      "Lug-to-Lug": "49.3 mm",
+      "Gewicht": "72 g"
     }
   },
   {
@@ -187,6 +201,7 @@
       "Funktionen": "Stoppuhr, Alarm, LED-Licht",
       "Durchmesser": "38 mm",
       "Höhe": "9 mm",
+      "Bandanstoß": "20 mm",
       "Gewicht": "44 g"
     }
   },
@@ -205,14 +220,16 @@
     "tech": {
       "Werk": "Quarz",
       "Kaliber": "5689",
-      "Batterie": "10 Jahre (CR2025)",
+      "Batterie": "10 Jahre (CR2032)",
       "Material Gehäuse": "Resin",
       "Material Glas": "Acryl",
+      "Material Band": "Resin",
       "Wasserdichtigkeit": "100 m",
       "Funktionen": "Weltzeit, Stoppuhr, Timer, 5 Alarme, LED-Licht",
-      "Durchmesser": "51 mm",
-      "Höhe": "15 mm",
-      "Gewicht": "55 g"
+      "Durchmesser": "50 mm",
+      "Höhe": "15.9 mm",
+      "Bandanstoß": "28 mm",
+      "Gewicht": "52 g"
     }
   },
   {
@@ -233,10 +250,12 @@
       "Batterie": "10 Jahre (CR2025)",
       "Material Gehäuse": "Resin",
       "Material Glas": "Acryl",
+      "Material Band": "Resin",
       "Wasserdichtigkeit": "100 m",
       "Funktionen": "Weltzeit, Stoppuhr, Timer, 5 Alarme, LED-Licht",
       "Durchmesser": "45 mm",
       "Höhe": "12.5 mm",
+      "Bandanstoß": "18 mm",
       "Gewicht": "32 g"
     }
   }

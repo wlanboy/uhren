@@ -3,101 +3,49 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Meine Uhrensammlung</title>
-
-    <!-- PicoCSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
 </head>
 
 <body>
 
-    <header class="container">
-        <nav>
-            <ul>
-                <li><strong>Meine Uhrensammlung</strong></li>
-            </ul>
-            <ul>
-                <li>
-                    <select id="viewSelect">
-                        <option value="images">Bild</option>
-                        <option value="tech">Tech Info</option>
-                        <option value="both">Bild + Tech Info</option>
-                    </select>
-                </li>
-                <li>
-                    <select id="brandSelect">
-                        <option value="all">Alle Hersteller</option>
-                        <option value="Spinnaker">Spinnaker</option>
-                        <option value="Casio">Casio</option>
-                    </select>
-                </li>
-                <li>
-                    <button id="compareBtn" disabled>Vergleichen</button>
-                </li>
-                <li>
-                    <button id="themeToggle">Theme</button>
-                </li>
-            </ul>
-        </nav>
+    <header>
+        <div class="container header-inner">
+            <div class="header-brand">
+                <strong>Meine Uhrensammlung</strong>
+            </div>
+            <div class="header-actions">
+                <button id="compareBtn" disabled>Vergleichen</button>
+                <button id="themeToggle" class="btn-icon" aria-label="Theme wechseln">Theme</button>
+            </div>
+        </div>
+        <div class="filter-bar">
+            <div class="container">
+                <div id="tagChips" class="tag-chips"></div>
+            </div>
+        </div>
     </header>
 
     <main class="container">
 
-        <section class="filter-panel">
-            <details>
-                <summary>Tags filtern</summary>
-                <fieldset id="tagFilter">
-                    <label><input type="checkbox" value="Automatik"> Automatik</label>
-                    <label><input type="checkbox" value="Solar"> Solar</label>
-                    <label><input type="checkbox" value="G-Shock"> G‑Shock</label>
-                    <label><input type="checkbox" value="Saphirglas"> Saphirglas</label>
-                    <label><input type="checkbox" value="Diver"> Diver</label>
-                    <label><input type="checkbox" value="Digital"> Digital</label>
-                    <label><input type="checkbox" value="Digital-Analog"> Digital-Analog</label>
-                    <label><input type="checkbox" value="Edelstahl"> Edelstahl</label>
-                    <label><input type="checkbox" value="Edelstahlband"> Edelstahlband</label>
-                    <label><input type="checkbox" value="Bluetooth"> Bluetooth</label>
-                    <label><input type="checkbox" value="Funk"> Funk</label>
-                    <label><input type="checkbox" value="Chronograph"> Chronograph</label>
-                    <label><input type="checkbox" value="NH35"> NH35</label>
-                    <label><input type="checkbox" value="Vintage-Style"> Vintage-Style</label>
-                    <label><input type="checkbox" value="Keramiklünette"> Keramiklünette</label>
-                    <label><input type="checkbox" value="300m Wasserdicht"> 300m Wasserdicht</label>
-                    <label><input type="checkbox" value="Carbon Core Guard"> Carbon Core Guard</label>
-                    <label><input type="checkbox" value="Weltzeit"> Weltzeit</label>
-                    <label><input type="checkbox" value="10 Jahre Batterie"> 10 Jahre Batterie</label>
-                    <label><input type="checkbox" value="Retro"> Retro</label>
-                    <label><input type="checkbox" value="Outdoor"> Outdoor</label>
-                    <label><input type="checkbox" value="Resin"> Resin</label>
-                    <label><input type="checkbox" value="Budget"> Budget</label>
-                </fieldset>
-            </details>
+        <section>
+            <div id="gallery" class="masonry"></div>
         </section>
 
         <section>
-            <div id="gallery" class="masonry">
-                <!-- Karten werden per JS gerendert -->
-            </div>
-        </section>
-
-        <section>
-            <h2>Wunschliste</h2>
+            <h2 class="section-label">Wunschliste</h2>
             <div id="wishlistArea" class="wishlist-grid"></div>
         </section>
 
     </main>
 
-    <!-- Vergleichs-Overlay -->
     <div id="compareOverlay" class="compare-overlay">
         <div class="compare-overlay-inner">
             <button id="overlayClose" class="overlay-close" aria-label="Schließen">✕</button>
             <h2>Vergleich</h2>
-            <div id="compareArea" class="compare-grid">
-                <!-- Vergleichskarten werden per JS gerendert -->
-            </div>
+            <div id="compareArea" class="compare-grid"></div>
         </div>
     </div>
 

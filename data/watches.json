@@ -1,5 +1,25 @@
 [
   {
+    "brand": "Bering",
+    "name": "Bering Solar 14440-393",
+    "code": "14440-393",
+    "value": 200,
+    "tags": [
+      "Solar",
+      "Saphirglas",
+      "Edelstahl",
+      "Edelstahlband"
+    ],
+    "tech": {
+      "Werk": "Quarz (Solar)",
+      "Material Gehäuse": "Edelstahl",
+      "Material Glas": "Saphirglas",
+      "Material Band": "Edelstahl",
+      "Wasserdichtigkeit": "50 m",
+      "Durchmesser": "40 mm"
+    }
+  },
+  {
     "brand": "Spinnaker",
     "name": "Spinnaker Bradner Automatik Tidal Blue SP-5062-05",
     "code": "SP-5062-05",

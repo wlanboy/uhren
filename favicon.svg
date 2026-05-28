@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Strap top -->
+  <rect x="22" y="2" width="20" height="14" rx="4" fill="#c8a87a"/>
+  <!-- Strap bottom -->
+  <rect x="22" y="48" width="20" height="14" rx="4" fill="#c8a87a"/>
+  <!-- Strap stitching -->
+  <rect x="25" y="4" width="14" height="10" rx="2" fill="none" stroke="#b8946a" stroke-width="0.75" stroke-dasharray="2,2"/>
+  <!-- Strap buckle hint -->
+  <rect x="28" y="54" width="8" height="2" rx="1" fill="#a07840"/>
+  <!-- Case shadow/depth -->
+  <circle cx="32" cy="32" r="19" fill="#0a1a3a"/>
+  <!-- Bezel outer -->
+  <circle cx="32" cy="32" r="17" fill="none" stroke="#c0c8d4" stroke-width="3"/>
+  <!-- Case body -->
+  <circle cx="32" cy="32" r="15" fill="#1a3a6c"/>
+  <!-- Crown -->
+  <rect x="48" y="28" width="5" height="8" rx="2.5" fill="#c0c8d4"/>
+  <!-- Lug top-left -->
+  <rect x="18" y="15" width="5" height="8" rx="2" fill="#a0aab8"/>
+  <!-- Lug top-right -->
+  <rect x="41" y="15" width="5" height="8" rx="2" fill="#a0aab8"/>
+  <!-- Lug bottom-left -->
+  <rect x="18" y="41" width="5" height="8" rx="2" fill="#a0aab8"/>
+  <!-- Lug bottom-right -->
+  <rect x="41" y="41" width="5" height="8" rx="2" fill="#a0aab8"/>
+  <!-- Inner bezel ring -->
+  <circle cx="32" cy="32" r="11" fill="none" stroke="#c0c8d4" stroke-width="0.75" opacity="0.5"/>
+</svg>

@@ -1,7 +1,10 @@
-## simple website for my watches
+# simple website for my watches
+
+Statische Website meiner Uhrensammlung: Galerie, Filter nach Hersteller und Tags.
+
 https://wlanboy.github.io/uhren/
 
-### Features
+## Features
 
 - **Galerie** mit Masonry-Layout — zeigt Zifferblatt-Fotos aller Uhren
 - **Drei Ansichtsmodi**: Nur Bild / Nur Tech-Info / Bild + Tech-Info
@@ -11,7 +14,7 @@ https://wlanboy.github.io/uhren/
 - **Wunschliste** — separate Sektion für zukünftige Wunschuhren
 - **Dark/Light-Mode** — per Button oder automatisch via Systemeinstellung
 
-### Datenstruktur
+## Datenstruktur
 
 Uhren werden in `data/watches.json` gepflegt, Wunschliste in `data/wishlist.json`.
 
@@ -33,7 +36,7 @@ Jeder Eintrag hat folgende Felder:
 
 Das `code`-Feld dient auch als Dateiname für das Zifferblatt-Foto: `faces/<code>.jpg`.
 
-### Sammlung
+## Sammlung
 
 | Uhr | Hersteller | Wert |
 |-----|-----------|------|
@@ -47,13 +50,13 @@ Das `code`-Feld dient auch als Dateiname für das Zifferblatt-Foto: `faces/<code
 | AE-1600H-8BVEF | Casio | 45 € |
 | AE-1200WH-1CVEF | Casio | 40 € |
 
-### Techstack
+## Techstack
 
 - Vanilla JS (kein Framework)
 - [PicoCSS v2](https://picocss.com/) für das Styling
 - Daten aus lokalen JSON-Dateien
 
-### run locally
+## run locally
 ```bash
 python3 -m http.server 8000
 ```

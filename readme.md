@@ -4,16 +4,6 @@ Statische Website meiner Uhrensammlung: Galerie, Filter nach Hersteller und Tags
 
 https://wlanboy.github.io/uhren/
 
-## Features
-
-- **Galerie** mit Masonry-Layout — zeigt Zifferblatt-Fotos aller Uhren
-- **Drei Ansichtsmodi**: Nur Bild / Nur Tech-Info / Bild + Tech-Info
-- **Filterung nach Hersteller** (Spinnaker, Casio)
-- **Tag-Filter** (Mehrfachauswahl: Automatik, Solar, G-Shock, Saphirglas, Diver, Digital, Edelstahl, Bluetooth, Funk)
-- **Vergleichsfunktion** — zwei Uhren nebeneinander mit technischen Daten
-- **Wunschliste** — separate Sektion für zukünftige Wunschuhren
-- **Dark/Light-Mode** — per Button oder automatisch via Systemeinstellung
-
 ## Datenstruktur
 
 Uhren werden in `data/watches.json` gepflegt, Wunschliste in `data/wishlist.json`.

@@ -24,26 +24,30 @@ function findWatch(code) {
 }
 
 function shortName(w) {
-  return w.name.replace(w.brand + ' ', '');
+  return w.name.replace(new RegExp(`^${w.brand}\\s+`, 'i'), '');
+}
+
+function formatEuro(v) {
+  return `${v.toLocaleString('de-DE')} €`;
 }
 
 function brandBadge(w) {
-  const color = brandColor(w.brand);
-  return `<span class="brand-badge" style="background:${color}20;color:${color}">${w.brand}</span>`;
+  return `<span class="brand-badge" style="--brand-color:${brandColor(w.brand)}">${w.brand}</span>`;
 }
 
 function techRow(key, val) {
   return `<li><span class="tech-key">${key}</span><span class="tech-val">${val}</span></li>`;
 }
 
-function tagsHtml(w) {
+function tagsHtml(w, limit = Infinity) {
   if (!w.tags?.length) return '';
-  const color = brandColor(w.brand);
+  // aktive Filter-Tags zuerst, damit sie auch gekürzt sichtbar bleiben
+  const tags = [...w.tags].sort((a, b) => selectedTags.has(b) - selectedTags.has(a));
   let html = `<div class="tags">`;
-  w.tags.forEach(t => {
-    const active = selectedTags.has(t);
-    html += `<span class="tag${active ? ' tag-active' : ''}"${active ? ` style="background:${color}18;color:${color};border-color:${color}60"` : ''}>${t}</span>`;
+  tags.slice(0, limit).forEach(t => {
+    html += `<span class="tag${selectedTags.has(t) ? ' tag-active' : ''}">${t}</span>`;
   });
+  if (tags.length > limit) html += `<span class="tag tag-more">+${tags.length - limit}</span>`;
   return html + `</div>`;
 }
 
@@ -56,6 +60,7 @@ async function loadData() {
     watches = await resW.json();
     wishlist = await resWish.json();
     applySystemThemePreference();
+    renderStats();
     renderTagChips();
     render();
   } catch (e) {
@@ -67,6 +72,18 @@ function applySystemThemePreference() {
   if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) {
     document.documentElement.dataset.theme = 'dark';
   }
+}
+
+function renderStats() {
+  const brands = new Set(watches.map(w => w.brand));
+  const total = watches.reduce((sum, w) => sum + (w.value ?? 0), 0);
+  const stats = [
+    ['Uhren', watches.length],
+    ['Marken', brands.size],
+  ];
+  document.getElementById('stats').innerHTML = stats
+    .map(([label, val]) => `<div><dt>${label}</dt><dd>${val}</dd></div>`)
+    .join('');
 }
 
 function allTags() {
@@ -88,7 +105,7 @@ function renderTagChips() {
   if (selectedTags.size > 0) {
     const reset = document.createElement('button');
     reset.className = 'chip chip-reset';
-    reset.textContent = '✕ Reset';
+    reset.textContent = '✕ Zurücksetzen';
     reset.addEventListener('click', () => {
       selectedTags.clear();
       renderTagChips();
@@ -130,35 +147,36 @@ function buildCard(w) {
   card.setAttribute('aria-label', `${w.name} – Details anzeigen`);
 
   let html = `<button class="compare-toggle" aria-pressed="${isSelected}"
-    title="${isSelected ? 'Aus Vergleich entfernen' : 'Zum Vergleich hinzufügen'}">${isSelected ? '✓' : '+'}</button>`;
-
-  html += `<div class="card-top">
-    <div class="card-title-row">
-      ${brandBadge(w)}
-      <h3>${shortName(w)}</h3>
-    </div>
-    <div class="view-toggle">
-      <button class="vt${view === 'images' ? ' vt-active' : ''}" data-view="images">Bild</button>
-      <button class="vt${view === 'tech'   ? ' vt-active' : ''}" data-view="tech">Tech</button>
-    </div>
-  </div>`;
-
-  if (view === 'images') {
-    html += `<img src="faces/${w.code}.jpg" loading="lazy" alt="${w.name}">`;
-  }
+    title="${isSelected ? 'Aus Vergleich entfernen' : 'Zum Vergleich hinzufügen'}"
+    aria-label="${w.name} ${isSelected ? 'aus Vergleich entfernen' : 'zum Vergleich hinzufügen'}">${isSelected ? '✓' : '+'}</button>`;
 
   if (view === 'tech' && w.tech) {
     html += `<ul class="tech-list">`;
     for (const key in w.tech) html += techRow(key, w.tech[key]);
     html += `</ul>`;
+  } else {
+    html += `<div class="card-media"><img src="faces/${w.code}.jpg" loading="lazy" alt="${w.name}"></div>`;
   }
 
-  html += tagsHtml(w);
+  html += `<div class="card-body">
+    ${brandBadge(w)}
+    <h3>${shortName(w)}</h3>
+    ${tagsHtml(w, 4)}
+    <div class="card-footer">
+      <div class="view-toggle" role="group" aria-label="Ansicht">
+        <button class="vt${view === 'images' ? ' vt-active' : ''}" data-view="images" aria-pressed="${view === 'images'}">Bild</button>
+        <button class="vt${view === 'tech'   ? ' vt-active' : ''}" data-view="tech" aria-pressed="${view === 'tech'}">Technik</button>
+      </div>
+    </div>
+  </div>`;
 
   card.innerHTML = html;
 
   const img = card.querySelector('img');
-  if (img) img.onload = () => img.classList.add('loaded');
+  if (img) {
+    if (img.complete) img.classList.add('loaded');
+    else img.onload = () => img.classList.add('loaded');
+  }
 
   card.querySelectorAll('.vt').forEach(btn => {
     btn.addEventListener('click', e => {
@@ -186,8 +204,9 @@ function buildCard(w) {
 
 function render() {
   const gallery = document.getElementById('gallery');
-  gallery.innerHTML = '';
-  filteredWatches().forEach(w => gallery.appendChild(buildCard(w)));
+  const list = filteredWatches();
+  gallery.innerHTML = list.length ? '' : `<p class="empty-state">Keine Uhr hat alle gewählten Tags.</p>`;
+  list.forEach(w => gallery.appendChild(buildCard(w)));
 
   updateCompareButton();
   renderCompareTray();
@@ -196,6 +215,7 @@ function render() {
 
 function renderWishlist() {
   const area = document.getElementById('wishlistArea');
+  document.getElementById('wishlistSection').hidden = wishlist.length === 0;
   area.innerHTML = '';
   wishlist.forEach(w => area.appendChild(buildCard(w)));
 }
@@ -236,7 +256,7 @@ function renderCompareTray() {
     const w = findWatch(compareQueue[i]);
     if (w) {
       html += `<div class="tray-slot" style="--brand-color:${brandColor(w.brand)}">
-        <img src="faces/${w.code}.jpg" alt="${w.name}" data-detail="${w.code}" title="Details anzeigen">
+        <span class="tray-thumb"><img src="faces/${w.code}.jpg" alt="${w.name}" data-detail="${w.code}" title="Details anzeigen"></span>
         <span title="${w.name}">${shortName(w)}</span>
         <button class="tray-remove" data-remove="${w.code}" aria-label="${w.name} entfernen" title="Entfernen">✕</button>
       </div>`;
@@ -331,7 +351,7 @@ function renderDetail() {
           <h2 id="detailTitle">${w.name}</h2>
           <div class="detail-meta">
             <span class="detail-code">${w.code}</span>
-            ${w.value ? `<span class="detail-value">${w.value} €</span>` : ''}
+            ${w.value ? `<span class="detail-value">${formatEuro(w.value)}</span>` : ''}
           </div>
         </div>
         ${tagsHtml(w)}
@@ -371,7 +391,7 @@ function compareRows(items) {
 
   const rows = [
     { key: 'Hersteller', values: items.map(w => w.brand) },
-    { key: 'Wert', values: items.map(w => w.value ? `${w.value} €` : null) },
+    { key: 'Wert', values: items.map(w => w.value ? formatEuro(w.value) : null) },
     ...keys.map(k => ({ key: k, values: items.map(w => w.tech?.[k] ?? null) })),
   ];
   rows.forEach(r => r.diff = new Set(r.values.map(normalizeValue)).size > 1);
@@ -411,7 +431,7 @@ function renderCompare() {
   items.forEach(w => {
     html += `<th class="ct-watch" scope="col" style="--brand-color:${brandColor(w.brand)}">
       <button class="ct-remove" data-remove="${w.code}" aria-label="${w.name} entfernen" title="Aus Vergleich entfernen">✕</button>
-      <img src="faces/${w.code}.jpg" alt="${w.name}" data-detail="${w.code}" title="Details anzeigen">
+      <div class="ct-media"><img src="faces/${w.code}.jpg" alt="${w.name}" data-detail="${w.code}" title="Details anzeigen"></div>
       ${brandBadge(w)}
       <div class="ct-name">${shortName(w)}</div>
     </th>`;
@@ -426,10 +446,9 @@ function renderCompare() {
 
   html += `<tr class="${tagsDiff ? 'is-diff' : 'is-same'}"><th scope="row">Tags</th>`;
   items.forEach(w => {
-    const color = brandColor(w.brand);
     const tags = (w.tags ?? []).map(t => shared.has(t)
       ? `<span class="tag tag-shared">${t}</span>`
-      : `<span class="tag" style="background:${color}18;color:${color};border-color:${color}60">${t}</span>`
+      : `<span class="tag tag-active" style="--brand-color:${brandColor(w.brand)}">${t}</span>`
     ).join('');
     html += `<td><div class="tags">${tags || '<span class="ct-missing">—</span>'}</div></td>`;
   });

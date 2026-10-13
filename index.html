@@ -42,11 +42,28 @@
 
     </main>
 
-    <div id="compareOverlay" class="compare-overlay">
-        <div class="compare-overlay-inner">
-            <button id="overlayClose" class="overlay-close" aria-label="Schließen">✕</button>
-            <h2>Vergleich</h2>
-            <div id="compareArea" class="compare-grid"></div>
+    <div id="compareTray" class="compare-tray" inert>
+        <div class="container compare-tray-inner">
+            <div id="compareTraySlots" class="tray-slots"></div>
+            <div class="tray-actions">
+                <button id="trayClear" class="btn-ghost">Leeren</button>
+                <button id="trayOpen" class="btn-primary" disabled>Vergleichen</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="compareOverlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="compareTitle">
+        <div class="overlay-inner compare-inner">
+            <button class="overlay-close" data-close aria-label="Schließen">✕</button>
+            <h2 id="compareTitle">Vergleich</h2>
+            <div id="compareArea"></div>
+        </div>
+    </div>
+
+    <div id="detailOverlay" class="overlay overlay--top" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+        <div class="overlay-inner detail-inner">
+            <button class="overlay-close" data-close aria-label="Schließen">✕</button>
+            <div id="detailContent"></div>
         </div>
     </div>
 

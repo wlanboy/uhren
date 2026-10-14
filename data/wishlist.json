@@ -1,2 +1,29 @@
 [
+  {
+    "brand": "Casio",
+    "name": "Casio EFS-S660PB-1A",
+    "code": "EFS-S660PB-1A",
+    "value": 199,
+    "tags": [
+      "Solar",
+      "Saphirglas",
+      "Edelstahl",
+      "Chronograph",
+      "Resin"
+    ],
+    "tech": {
+      "Werk": "Quarz (Solar)",
+      "Kaliber": "Module 5334",
+      "Batterie": "Solar, 5 Monate Dunkelreserve",
+      "Material Gehäuse": "Edelstahl mit grauer Ionenbeschichtung",
+      "Material Glas": "Saphirglas",
+      "Material Band": "Resin",
+      "Wasserdichtigkeit": "100 m",
+      "Funktionen": "Chronograph (1/20 s), Tachymeter, Datum",
+      "Durchmesser": "38.3 mm",
+      "Höhe": "11.6 mm",
+      "Lug-to-Lug": "45.3 mm",
+      "Gewicht": "71 g"
+    }
+  }
 ]

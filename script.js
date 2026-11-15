@@ -15,6 +15,14 @@ const BRAND_COLORS = {
   'Spinnaker': '#0b7a6e',
 };
 
+function esc(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 function brandColor(brand) {
   return BRAND_COLORS[brand] ?? '#6366f1';
 }
@@ -32,11 +40,11 @@ function formatEuro(v) {
 }
 
 function brandBadge(w) {
-  return `<span class="brand-badge" style="--brand-color:${brandColor(w.brand)}">${w.brand}</span>`;
+  return `<span class="brand-badge" style="--brand-color:${brandColor(w.brand)}">${esc(w.brand)}</span>`;
 }
 
 function techRow(key, val) {
-  return `<li><span class="tech-key">${key}</span><span class="tech-val">${val}</span></li>`;
+  return `<li><span class="tech-key">${esc(key)}</span><span class="tech-val">${esc(val)}</span></li>`;
 }
 
 function tagsHtml(w, limit = Infinity) {
@@ -45,27 +53,34 @@ function tagsHtml(w, limit = Infinity) {
   const tags = [...w.tags].sort((a, b) => selectedTags.has(b) - selectedTags.has(a));
   let html = `<div class="tags">`;
   tags.slice(0, limit).forEach(t => {
-    html += `<span class="tag${selectedTags.has(t) ? ' tag-active' : ''}">${t}</span>`;
+    html += `<span class="tag${selectedTags.has(t) ? ' tag-active' : ''}">${esc(t)}</span>`;
   });
   if (tags.length > limit) html += `<span class="tag tag-more">+${tags.length - limit}</span>`;
   return html + `</div>`;
 }
 
+async function fetchJson(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`${url}: HTTP ${res.status}`);
+  return res.json();
+}
+
 async function loadData() {
+  applySystemThemePreference();
   try {
-    const [resW, resWish] = await Promise.all([
-      fetch('data/watches.json'),
-      fetch('data/wishlist.json'),
+    [watches, wishlist] = await Promise.all([
+      fetchJson('data/watches.json'),
+      fetchJson('data/wishlist.json'),
     ]);
-    watches = await resW.json();
-    wishlist = await resWish.json();
-    applySystemThemePreference();
-    renderStats();
-    renderTagChips();
-    render();
   } catch (e) {
     console.error('Fehler beim Laden:', e);
+    document.getElementById('gallery').innerHTML =
+      `<p class="empty-state">Die Uhrendaten konnten nicht geladen werden (${esc(e.message)}).</p>`;
+    return;
   }
+  renderStats();
+  renderTagChips();
+  render();
 }
 
 function applySystemThemePreference() {
@@ -148,19 +163,19 @@ function buildCard(w) {
 
   let html = `<button class="compare-toggle" aria-pressed="${isSelected}"
     title="${isSelected ? 'Aus Vergleich entfernen' : 'Zum Vergleich hinzufügen'}"
-    aria-label="${w.name} ${isSelected ? 'aus Vergleich entfernen' : 'zum Vergleich hinzufügen'}">${isSelected ? '✓' : '+'}</button>`;
+    aria-label="${esc(w.name)} ${isSelected ? 'aus Vergleich entfernen' : 'zum Vergleich hinzufügen'}">${isSelected ? '✓' : '+'}</button>`;
 
   if (view === 'tech' && w.tech) {
     html += `<ul class="tech-list">`;
     for (const key in w.tech) html += techRow(key, w.tech[key]);
     html += `</ul>`;
   } else {
-    html += `<div class="card-media"><img src="faces/${w.code}.jpg" loading="lazy" alt="${w.name}"></div>`;
+    html += `<div class="card-media"><img src="faces/${esc(w.code)}.jpg" loading="lazy" alt="${esc(w.name)}"></div>`;
   }
 
   html += `<div class="card-body">
     ${brandBadge(w)}
-    <h3>${shortName(w)}</h3>
+    <h3>${esc(shortName(w))}</h3>
     ${tagsHtml(w, 4)}
     <div class="card-footer">
       <div class="view-toggle" role="group" aria-label="Ansicht">
@@ -256,9 +271,9 @@ function renderCompareTray() {
     const w = findWatch(compareQueue[i]);
     if (w) {
       html += `<div class="tray-slot" style="--brand-color:${brandColor(w.brand)}">
-        <span class="tray-thumb"><img src="faces/${w.code}.jpg" alt="${w.name}" data-detail="${w.code}" title="Details anzeigen"></span>
-        <span title="${w.name}">${shortName(w)}</span>
-        <button class="tray-remove" data-remove="${w.code}" aria-label="${w.name} entfernen" title="Entfernen">✕</button>
+        <span class="tray-thumb"><img src="faces/${esc(w.code)}.jpg" alt="${esc(w.name)}" data-detail="${esc(w.code)}" title="Details anzeigen"></span>
+        <span title="${esc(w.name)}">${esc(shortName(w))}</span>
+        <button class="tray-remove" data-remove="${esc(w.code)}" aria-label="${esc(w.name)} entfernen" title="Entfernen">✕</button>
       </div>`;
     } else {
       html += `<div class="tray-slot tray-slot--empty"><span>Uhr wählen</span></div>`;
@@ -337,20 +352,20 @@ function renderDetail() {
     ? '✓ Im Vergleich – entfernen'
     : '+ Zum Vergleich';
   const compareTitle = !inCompare && compareQueue.length >= MAX_COMPARE
-    ? ` title="Ersetzt ${findWatch(compareQueue[0]).name}"`
+    ? ` title="Ersetzt ${esc(findWatch(compareQueue[0]).name)}"`
     : '';
 
   document.getElementById('detailContent').innerHTML = `
     <div class="detail">
       <figure class="detail-media">
-        <img src="faces/${w.code}.jpg" alt="${w.name}">
+        <img src="faces/${esc(w.code)}.jpg" alt="${esc(w.name)}">
       </figure>
       <div class="detail-body">
         <div class="detail-head">
           ${brandBadge(w)}
-          <h2 id="detailTitle">${w.name}</h2>
+          <h2 id="detailTitle">${esc(w.name)}</h2>
           <div class="detail-meta">
-            <span class="detail-code">${w.code}</span>
+            <span class="detail-code">${esc(w.code)}</span>
             ${w.value ? `<span class="detail-value">${formatEuro(w.value)}</span>` : ''}
           </div>
         </div>
@@ -418,7 +433,7 @@ function renderCompare() {
   if (items.length < MAX_COMPARE && candidates.length) {
     html += `<select id="compareAdd" aria-label="Uhr zum Vergleich hinzufügen">
       <option value="">+ Uhr hinzufügen</option>
-      ${candidates.map(w => `<option value="${w.code}">${w.name}</option>`).join('')}
+      ${candidates.map(w => `<option value="${esc(w.code)}">${esc(w.name)}</option>`).join('')}
     </select>`;
   }
   html += `</div>`;
@@ -430,25 +445,25 @@ function renderCompare() {
 
   items.forEach(w => {
     html += `<th class="ct-watch" scope="col" style="--brand-color:${brandColor(w.brand)}">
-      <button class="ct-remove" data-remove="${w.code}" aria-label="${w.name} entfernen" title="Aus Vergleich entfernen">✕</button>
-      <div class="ct-media"><img src="faces/${w.code}.jpg" alt="${w.name}" data-detail="${w.code}" title="Details anzeigen"></div>
+      <button class="ct-remove" data-remove="${esc(w.code)}" aria-label="${esc(w.name)} entfernen" title="Aus Vergleich entfernen">✕</button>
+      <div class="ct-media"><img src="faces/${esc(w.code)}.jpg" alt="${esc(w.name)}" data-detail="${esc(w.code)}" title="Details anzeigen"></div>
       ${brandBadge(w)}
-      <div class="ct-name">${shortName(w)}</div>
+      <div class="ct-name">${esc(shortName(w))}</div>
     </th>`;
   });
   html += `</tr></thead><tbody>`;
 
   rows.forEach(r => {
-    html += `<tr class="${r.diff ? 'is-diff' : 'is-same'}"><th scope="row">${r.key}</th>`;
-    r.values.forEach(v => { html += `<td>${v ?? '<span class="ct-missing">—</span>'}</td>`; });
+    html += `<tr class="${r.diff ? 'is-diff' : 'is-same'}"><th scope="row">${esc(r.key)}</th>`;
+    r.values.forEach(v => { html += `<td>${v == null ? '<span class="ct-missing">—</span>' : esc(v)}</td>`; });
     html += `</tr>`;
   });
 
   html += `<tr class="${tagsDiff ? 'is-diff' : 'is-same'}"><th scope="row">Tags</th>`;
   items.forEach(w => {
     const tags = (w.tags ?? []).map(t => shared.has(t)
-      ? `<span class="tag tag-shared">${t}</span>`
-      : `<span class="tag tag-active" style="--brand-color:${brandColor(w.brand)}">${t}</span>`
+      ? `<span class="tag tag-shared">${esc(t)}</span>`
+      : `<span class="tag tag-active" style="--brand-color:${brandColor(w.brand)}">${esc(t)}</span>`
     ).join('');
     html += `<td><div class="tags">${tags || '<span class="ct-missing">—</span>'}</div></td>`;
   });

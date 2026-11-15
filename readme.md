@@ -28,22 +28,12 @@ Das `code`-Feld dient auch als Dateiname für das Zifferblatt-Foto: `faces/<code
 
 ## Sammlung
 
-| Uhr | Hersteller | Wert |
-|-----|-----------|------|
-| Spinnaker Bradner Automatik SP-5062-05 | Spinnaker | 350 € |
-| Spinnaker Hull Diver Automatic SP-5088 | Spinnaker | 350 € |
-| G-Shock G-Steel GST-B400-1AER | Casio | 300 € |
-| G-Shock GW-B5600BC-1BER | Casio | 200 € |
-| EFS-S630DC-2AVUEF | Casio | 180 € |
-| GBM-2100A-1A3ER | Casio | 150 € |
-| A130WE-7AEF | Casio | 55 € |
-| AE-1600H-8BVEF | Casio | 45 € |
-| AE-1200WH-1CVEF | Casio | 40 € |
+Die aktuelle Liste mit Fotos, Tags und technischen Daten steht auf der Website. Quelle ist `data/watches.json`.
 
 ## Techstack
 
 - Vanilla JS (kein Framework)
-- [PicoCSS v2](https://picocss.com/) für das Styling
+- Eigenes Stylesheet in `style.css`
 - Daten aus lokalen JSON-Dateien
 
 ## run locally

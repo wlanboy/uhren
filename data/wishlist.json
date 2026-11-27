@@ -25,5 +25,32 @@
       "Lug-to-Lug": "45.3 mm",
       "Gewicht": "71 g"
     }
+  },
+  {
+    "brand": "Casio",
+    "name": "Casio G-Shock G-Steel GST-B1000D-3A",
+    "code": "GST-B1000D-3A",
+    "value": 449,
+    "tags": [
+      "Solar",
+      "Bluetooth",
+      "G-Shock",
+      "Edelstahl",
+      "Carbon Core Guard"
+    ],
+    "tech": {
+      "Werk": "Quarz (Tough Solar + Bluetooth)",
+      "Kaliber": "Module 5748",
+      "Batterie": "Solar (CTL920)",
+      "Material Gehäuse": "Carbon-verstärktes Resin, Lünette Edelstahl",
+      "Material Glas": "Mineralglas",
+      "Material Band": "Edelstahl",
+      "Wasserdichtigkeit": "200 m",
+      "Funktionen": "Stoppuhr, Timer, Alarm, LED-Licht, Phone Finder",
+      "Durchmesser": "44.2 mm",
+      "Höhe": "11.6 mm",
+      "Lug-to-Lug": "46.9 mm",
+      "Gewicht": "118 g"
+    }
   }
 ]
